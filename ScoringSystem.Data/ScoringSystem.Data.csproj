@@ -53,9 +53,11 @@
     <Compile Include="ApplicationRepository.cs" />
     <Compile Include="BaseEntity.cs" />
     <Compile Include="BoolQuestion.cs" />
+    <Compile Include="EntityCreator.cs" />
     <Compile Include="Form.cs" />
     <Compile Include="FormAnswer.cs" />
     <Compile Include="Question.cs" />
+    <Compile Include="QuestionInitializer.cs" />
     <Compile Include="VariableQuestion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

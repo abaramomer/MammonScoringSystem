@@ -1,6 +1,4 @@
-﻿using System.Web.UI.WebControls;
-
-namespace ScoringSystem.Models
+﻿namespace ScoringSystem.Models
 {
     public class BoolQuestionModel : QuestionModel
     {

@@ -7,7 +7,7 @@ namespace ScoringSystem.Data
         public ApplicationContext() :
             base()
         {
-            Database.SetInitializer(new CreateDatabaseIfNotExists<ApplicationContext>());
+            Database.SetInitializer(new QuestionInitializer());
         }
 
         public DbSet<Answer> Answers { get; set; }

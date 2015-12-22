@@ -4,6 +4,6 @@ namespace ScoringSystem.Data
 {
     public class BoolQuestion : Question
     {
-        public int TrueCoefficient { get; set; }
+        public double TrueCoefficient { get; set; }
     }
 }
