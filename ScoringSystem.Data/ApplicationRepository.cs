@@ -1,13 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 
 namespace ScoringSystem.Data
 {
-    public class ApplicationRepository : IDisposable
+    public class ApplicationRepository : IDisposable, IRepository
     {
         private ApplicationContext applicationContext;
 
-        public IDbSet<T> Get<T>() where T : BaseEntity
+        public IEnumerable<T> Get<T>() where T : BaseEntity
         {
             if (applicationContext == null)
             {

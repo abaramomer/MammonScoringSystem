@@ -4,11 +4,11 @@ namespace ScoringSystem.Services
 {
     public abstract class BaseService
     {
-        protected ApplicationRepository Repository;
+        protected IRepository Repository;
 
         protected BaseService()
         {
-            Repository = new ApplicationRepository();
+            Repository = new FakeRepository();
         }
 
         protected void Commit()

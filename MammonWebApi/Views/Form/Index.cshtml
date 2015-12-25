@@ -1,3 +1,40 @@
-﻿<span>
-    I am  form
-</span>
+﻿@using ScoringSystem.Data
+@model List<Question>
+<div id="question-section">
+    @foreach (var question in Model)
+    {
+        <label>@question.Text</label>
+        if (question is BoolQuestion)
+        {
+            @Html.Partial("BoolQuestion", question);
+        }
+
+        if (question is VariableQuestion)
+        {
+            @Html.Partial("VariableQuestion", question);
+        }
+
+        <br />
+
+    }
+</div>
+<button id="ok-button">OK</button>
+
+@section Scripts
+{
+    <script src="/Scripts/scoringform.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $("#ok-button").click(function() {
+                var answers = getAnswers($("#question-section"));
+
+                $.getJSON("/Form/GetScores/", { answers: JSON.stringify(answers) }, {
+                    success: function(scores) {
+                        console.log(scores);
+                    }
+                });
+            });
+        });
+    </script>
+}

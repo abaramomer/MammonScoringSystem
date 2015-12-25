@@ -126,6 +126,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
@@ -149,6 +150,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\scoringform.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -162,6 +164,8 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Form\Index.cshtml" />
     <Content Include="Views\Web.config" />
+    <Content Include="Views\Shared\BoolQuestion.cshtml" />
+    <Content Include="Views\Shared\VariableQuestion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -170,6 +174,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ScoringSystem.Data\ScoringSystem.Data.csproj">
+      <Project>{365bf247-805f-4d2e-92f0-961efa105aeb}</Project>
+      <Name>ScoringSystem.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ScoringSystem\ScoringSystem.csproj">
       <Project>{0abbe8df-b57c-40e9-8953-4e121255f35b}</Project>
       <Name>ScoringSystem</Name>

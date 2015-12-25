@@ -28,7 +28,7 @@ namespace ScoringSystem.Data
             base.Seed(context);
         }
 
-        private IEnumerable<Question> GetInitialQuestions()
+        public IEnumerable<Question> GetInitialQuestions()
         {
             yield return new BoolQuestion()
             {

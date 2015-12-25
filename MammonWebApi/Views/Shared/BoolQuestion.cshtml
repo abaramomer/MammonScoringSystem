@@ -1,0 +1,12 @@
+﻿@model ScoringSystem.Data.BoolQuestion
+
+<div class="bool-question" id="@Model.Id">
+    <label>
+        <input type="radio" name="@string.Format("group-{0}", Model.Id)" value="1">
+        Да
+    </label>
+    <label>
+        <input type="radio" name="@string.Format("group-{0}", Model.Id)" value="0">
+        Нет
+    </label>
+</div>
