@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using ScoringSystem.Data;
+using ScoringSystem.Data.Entities;
 using ScoringSystem.Models;
 
 namespace ScoringSystem.Services
@@ -9,7 +9,7 @@ namespace ScoringSystem.Services
     {
         public int CalculateScores(List<UserAnswer> answers)
         {
-            return Repository.Get<Form>().Count();
+            return Repository.Get<Question>(null).Count();
         }
     }
 }

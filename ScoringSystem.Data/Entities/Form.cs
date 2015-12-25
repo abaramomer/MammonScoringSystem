@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ScoringSystem.Data
+namespace ScoringSystem.Data.Entities
 {
     public class Form : BaseEntity
     {

@@ -1,10 +1,10 @@
-﻿@model ScoringSystem.Data.VariableQuestion
+﻿@model ScoringSystem.Models.VariableQuestionModel
 
 <div class="variable-question" id="@Model.Id">
     <select>
         @foreach (var answer in Model.Answers)
         {
-            <option value="@answer.Id">@answer.Text</option>
+            <option value="@answer">@answer.Text</option>
         }
     </select>
 </div>

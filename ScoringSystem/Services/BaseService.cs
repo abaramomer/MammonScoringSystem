@@ -8,13 +8,12 @@ namespace ScoringSystem.Services
 
         protected BaseService()
         {
-            Repository = new FakeRepository();
+            Repository = new Repository();
         }
 
         protected void Commit()
         {
-            Repository.SaveChanges();
-            Repository.Dispose();
+            Repository.Commit();
         }
     }
 }

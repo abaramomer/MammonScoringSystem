@@ -2,6 +2,5 @@
 {
     public class BoolQuestionModel : QuestionModel
     {
-        public BoolAnswer Answer { get; set; }
     }
 }

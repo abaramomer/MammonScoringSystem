@@ -1,15 +1,16 @@
-﻿@using ScoringSystem.Data
-@model List<Question>
+﻿@using ScoringSystem.Data.Entities
+@using ScoringSystem.Models
+@model List<ScoringSystem.Models.QuestionModel>
 <div id="question-section">
     @foreach (var question in Model)
     {
         <label>@question.Text</label>
-        if (question is BoolQuestion)
+        if (question is BoolQuestionModel)
         {
             @Html.Partial("BoolQuestion", question);
         }
 
-        if (question is VariableQuestion)
+        if (question is VariableQuestionModel)
         {
             @Html.Partial("VariableQuestion", question);
         }
