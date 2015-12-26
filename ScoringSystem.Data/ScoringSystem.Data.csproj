@@ -53,6 +53,8 @@
     <Compile Include="EntityProviders\EntityProviderBase.cs" />
     <Compile Include="Entities\Form.cs" />
     <Compile Include="Entities\FormAnswer.cs" />
+    <Compile Include="EntityProviders\FormAnswerProvider.cs" />
+    <Compile Include="EntityProviders\FormProvider.cs" />
     <Compile Include="EntityProviders\IEntityProvider.cs" />
     <Compile Include="EntityProviders\QuestionProvider.cs" />
     <Compile Include="Extensions\MySqlDataReaderExtensions.cs" />

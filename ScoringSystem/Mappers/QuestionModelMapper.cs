@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using ScoringSystem.Data.Entities;
+using ScoringSystem.Mappers;
 using ScoringSystem.Models;
 
 namespace ScoringSystem.ModelBuilders
@@ -16,13 +17,19 @@ namespace ScoringSystem.ModelBuilders
                 QuestionModel questionModel;
                 if(question.QuestionType == QuestionType.Bool)
                 {
-                    questionModel = new BoolQuestionModel();
+                    questionModel = new BoolQuestionModel()
+                    {
+                        Coefficient = question.TrueCoefficient.Value
+                    };
+
                 }
                 else
                 {
                     questionModel = new VariableQuestionModel
                     {
-                        Answers = answers.Where(a => a.QuestionId == question.Id).ToList()
+                        Answers = answers
+                            .Where(a => a.QuestionId == question.Id)
+                            .Select(AnswerMapper.MapToModel).ToList()
                     };
                 }
 

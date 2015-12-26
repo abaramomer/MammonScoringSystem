@@ -13,7 +13,7 @@ namespace ScoringSystem.Services
 
         protected void Commit()
         {
-            Repository.Commit();
+            Repository.Close();
         }
     }
 }

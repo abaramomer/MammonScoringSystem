@@ -23,7 +23,15 @@ namespace ScoringSystem.Data.EntityProviders
         }
 
         public override string TableName { get { return "questions"; } }
-        
+
+        protected override Dictionary<string, object> GetColumnValues(Question entity)
+        {
+            return new Dictionary<string, object>()
+            {
+                {"true_coefficient", entity.TrueCoefficient}
+            };
+        }
+
         protected override Question EntityFromReader(MySqlDataReader dataReader)
         {
             return new Question

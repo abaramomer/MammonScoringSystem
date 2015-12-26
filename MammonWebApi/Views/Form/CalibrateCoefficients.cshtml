@@ -1,35 +1,36 @@
-﻿@using ScoringSystem.Models
-@model List<ScoringSystem.Models.QuestionModel>
+﻿@model List<QuestionModel>
+           
+@using ScoringSystem.Models
 <div id="question-section">
     @foreach (var question in Model)
     {
         <label>@question.Text</label>
         if (question is BoolQuestionModel)
         {
-            @Html.Partial("BoolQuestion", question);
+            @Html.Partial("BoolQuestionInput", question)
         }
 
         if (question is VariableQuestionModel)
         {
-            @Html.Partial("VariableQuestion", question);
+            @Html.Partial("VariableQuestionInput", question);
         }
 
         <br />
 
     }
 </div>
-<button id="ok-button">OK</button>
+<button id="ok-button">Calibrate</button>
 
 @section Scripts
 {
-    <script src="/Scripts/scoringform.js"></script>
+    <script src="/Scripts/calibrateform.js"></script>
 
     <script>
         $(document).ready(function() {
             $("#ok-button").click(function() {
-                var answers = getAnswers($("#question-section"));
+                var coefficients = getCoefficients($("#question-section"));
 
-                $.getJSON("/Form/SaveForm/", { answers: JSON.stringify(answers) }, {
+                $.getJSON("/Form/SaveCoefficients/", { coefficients: JSON.stringify(coefficients) }, {
                     success: function(scores) {
                         console.log(scores);
                     }

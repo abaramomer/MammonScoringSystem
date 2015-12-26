@@ -5,6 +5,6 @@ namespace ScoringSystem.Models
 {
     public class VariableQuestionModel : QuestionModel
     {
-        public List<Answer> Answers { get; set; } 
+        public List<AnswerModel> Answers { get; set; } 
     }
 }

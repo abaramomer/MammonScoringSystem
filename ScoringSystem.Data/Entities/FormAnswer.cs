@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ScoringSystem.Data.Entities
+﻿namespace ScoringSystem.Data.Entities
 {
     public class FormAnswer : BaseEntity
     {
@@ -8,6 +6,6 @@ namespace ScoringSystem.Data.Entities
 
         public int QuestionId { get; set; }
 
-        public string Answer { get; set; }
+        public int Answer { get; set; }
     }
 }

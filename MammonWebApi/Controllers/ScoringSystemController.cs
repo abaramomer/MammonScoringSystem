@@ -1,36 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Web.Helpers;
 using System.Web.Http;
+using System.Web.Mvc;
+using ScoringSystem.Services;
 
 namespace MammonWebApi.Controllers
 {
-    public class ScoringSystemController : ApiController
+    public class ScoringSystemController : Controller
     {
-        // GET api/values
-        public IEnumerable<string> Get()
+        private readonly ScoreService scoreService;
+
+        public ScoringSystemController()
         {
-            return new string[] { "value1", "value2" };
+            scoreService = new ScoreService();
         }
 
-        // GET api/values/5
-        public string Get(int id)
+        public JsonResult GetScores(int clientId)
         {
-            return new Random().Next(1000).ToString();
+            return Json(scoreService.GetActualClientScores(clientId), JsonRequestBehavior.AllowGet);
         }
 
-        // POST api/values
-        public void Post([FromBody]string value)
+        public JsonResult GetQuestions(int clientId)
         {
-        }
-
-        // PUT api/values/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/values/5
-        public void Delete(int id)
-        {
+            return Json(scoreService.GetClientAnswers(clientId), JsonRequestBehavior.AllowGet);
         }
     }
 }

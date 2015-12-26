@@ -7,5 +7,7 @@ namespace ScoringSystem.Data.Entities
         public int ClientId { get; set; }
 
         public DateTime FinishDate { get; set; }
+
+        public double Scores { get; set; }
     }
 }

@@ -21,6 +21,14 @@ namespace ScoringSystem.Data.EntityProviders
             return EntityFromReader(dataReader);
         }
 
+        public Dictionary<string, object> MapToColumnValues(BaseEntity entity)
+        {
+            return GetColumnValues((T) entity);
+        }
+
+        protected abstract Dictionary<string, object> GetColumnValues(T entity);
+ 
+
         protected A GetFromReader<A>(string column, MySqlDataReader dataReader)
         {
             return (A) dataReader[column];

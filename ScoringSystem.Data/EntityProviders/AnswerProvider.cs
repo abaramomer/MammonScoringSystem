@@ -27,6 +27,15 @@ namespace ScoringSystem.Data.EntityProviders
             get { return "answers"; } 
         }
 
+        protected override Dictionary<string, object> GetColumnValues(Answer entity)
+        {
+            return new Dictionary<string, object>()
+            {
+                {"coefficient", entity.Coefficient},
+                {"text", "'" + entity.Text + "'"},
+            };
+        }
+
         protected override Answer EntityFromReader(MySqlDataReader dataReader)
         {
             return new Answer

@@ -9,6 +9,6 @@ namespace ScoringSystem.Data
 
         T InsertOrUpdate<T>(T entity) where T : BaseEntity;
 
-        void Commit();
+        void Close();
     }
 }

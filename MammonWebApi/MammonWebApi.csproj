@@ -40,6 +40,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MySql.Data, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.6.9.8\lib\net45\MySql.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -112,12 +116,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
@@ -143,6 +141,7 @@
     <Content Include="Global.asax" />
     <None Include="Properties\PublishProfiles\MammonWebApi.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
+    <Content Include="Scripts\calibrateform.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -166,6 +165,9 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\Shared\BoolQuestion.cshtml" />
     <Content Include="Views\Shared\VariableQuestion.cshtml" />
+    <Content Include="Views\Form\CalibrateCoefficients.cshtml" />
+    <Content Include="Views\Shared\BoolQuestionInput.cshtml" />
+    <Content Include="Views\Shared\VariableQuestionInput.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -174,10 +176,6 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ScoringSystem.Data\ScoringSystem.Data.csproj">
-      <Project>{365bf247-805f-4d2e-92f0-961efa105aeb}</Project>
-      <Name>ScoringSystem.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ScoringSystem\ScoringSystem.csproj">
       <Project>{0abbe8df-b57c-40e9-8953-4e121255f35b}</Project>
       <Name>ScoringSystem</Name>

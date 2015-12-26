@@ -14,5 +14,7 @@ namespace ScoringSystem.Data.EntityProviders
         Type EntityType { get; }
 
         BaseEntity MapFromReader(MySqlDataReader dataReader);
+
+        Dictionary<string, object> MapToColumnValues(BaseEntity entity);
     }
 }

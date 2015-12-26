@@ -24,7 +24,16 @@ namespace ScoringSystem.Data
         {
             var command = PrepareCommand(query);
 
-            return (int) command.ExecuteScalar();
+            command.ExecuteNonQuery();
+
+            return (int)command.LastInsertedId;
+        }
+
+        public void ExecuteNonQuery(string query)
+        {
+            var command = PrepareCommand(query);
+
+            command.ExecuteNonQuery();
         }
 
         private MySqlCommand PrepareCommand(string query)
