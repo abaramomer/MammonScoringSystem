@@ -16,10 +16,21 @@ namespace MammonWebApi.Controllers
             formService = new FormService();
         }
 
-        public ActionResult Index()
+        public ActionResult Index(string clientLink)
         {
-            var questions = formService.GetFormQuestions();
-            return View(questions);
+            ViewData["ClientLink"] = clientLink;
+            if (!string.IsNullOrEmpty(clientLink) && formService.IsLinkCorrect(clientLink))
+            {
+                var questions = formService.GetFormQuestions();
+                return View(questions);
+            }
+
+            return RedirectToAction("IncorrectLink",  "Form");
+        }
+
+        public ActionResult IncorrectLink()
+        {
+            return View();
         }
 
         public ActionResult CalibrateCoefficients()
@@ -28,14 +39,21 @@ namespace MammonWebApi.Controllers
             return View(questions);
         }
 
-        public JsonResult SaveForm(string answers)
+        public JsonResult SaveForm(string clientLink, string answers)
         {
             List<FormAnswerModel> userAnswers = (List<FormAnswerModel>)JsonConvert
                 .DeserializeObject(answers, typeof (List<FormAnswerModel>));
 
-            var scores = formService.SaveForm(1, userAnswers);
+            formService.SaveForm(clientLink, userAnswers);
 
-            return Json(scores, JsonRequestBehavior.AllowGet);
+            return Json("/Form/Success", JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Success()
+        {
+            ViewData["Message"] = "Ваши ответы учтены. Спасибо за прохождение анкеты";
+
+            return View();
         }
 
         public JsonResult SaveCoefficients(string coefficients)

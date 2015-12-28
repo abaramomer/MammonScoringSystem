@@ -4,7 +4,7 @@
 <div id="question-section">
     @foreach (var question in Model)
     {
-        <label>@question.Text</label>
+        <label class="h4">@question.Text</label>
         if (question is BoolQuestionModel)
         {
             @Html.Partial("BoolQuestionInput", question)
@@ -18,8 +18,9 @@
         <br />
 
     }
+
+    <button id="save-button">Save</button>
 </div>
-<button id="ok-button">Calibrate</button>
 
 @section Scripts
 {
@@ -27,7 +28,7 @@
 
     <script>
         $(document).ready(function() {
-            $("#ok-button").click(function() {
+            $("#save-button").click(function () {
                 var coefficients = getCoefficients($("#question-section"));
 
                 $.getJSON("/Form/SaveCoefficients/", { coefficients: JSON.stringify(coefficients) }, {

@@ -7,6 +7,8 @@ namespace ScoringSystem.Data
     {
         IList<T> Get<T>(Condition condition) where T : BaseEntity;
 
+        T Get<T>(int id) where T : BaseEntity;
+
         T InsertOrUpdate<T>(T entity) where T : BaseEntity;
 
         void Close();

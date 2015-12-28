@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using ScoringSystem.Data.Entities;
-using ScoringSystem.Mappers;
 using ScoringSystem.Models;
 
-namespace ScoringSystem.ModelBuilders
+namespace ScoringSystem.Mappers
 {
     public static class QuestionModelMapper
     {

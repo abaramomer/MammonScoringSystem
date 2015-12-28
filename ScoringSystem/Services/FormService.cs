@@ -3,18 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using ScoringSystem.Data;
 using ScoringSystem.Data.Entities;
-using ScoringSystem.ModelBuilders;
+using ScoringSystem.Data.ExternalData;
+using ScoringSystem.Mappers;
 using ScoringSystem.Models;
 
 namespace ScoringSystem.Services
 {
     public class FormService : BaseService
     {
-        private ScoreService scoreService;
+        private readonly ScoreService scoreService;
+        private readonly MammonBankRepository mammonBankRepository;
 
         public FormService()
         {
             scoreService = new ScoreService();
+            mammonBankRepository = new MammonBankRepository();
         }
 
         public List<QuestionModel> GetFormQuestions()
@@ -28,11 +31,11 @@ namespace ScoringSystem.Services
             return QuestionModelMapper.MapToQuestionModels(questions, answers);
         }
 
-        public double SaveForm(int clientId, List<FormAnswerModel> formAnswers)
+        public double SaveForm(string clientLink, List<FormAnswerModel> formAnswers)
         {
             Form form = new Form
             {
-                ClientId = clientId,
+                ClientId = mammonBankRepository.ClientIdByLink(clientLink),
                 FinishDate = DateTime.UtcNow,
                 Scores = scoreService.CalculateScores(formAnswers),
             };
@@ -55,7 +58,7 @@ namespace ScoringSystem.Services
             {
                 if(coefficient.AnswerId.HasValue)
                 {
-                    var answer = Repository.Get<Answer>(Condition.IdentityCondition(coefficient.AnswerId.Value)).Single();
+                    var answer = Repository.Get<Answer>(coefficient.AnswerId.Value);
 
                     answer.Coefficient = coefficient.Coefficient;
 
@@ -63,7 +66,7 @@ namespace ScoringSystem.Services
                 }
                 else
                 {
-                    var question = Repository.Get<Question>(Condition.IdentityCondition(coefficient.QuestionId)).Single();
+                    var question = Repository.Get<Question>(coefficient.QuestionId);
 
                     question.TrueCoefficient = coefficient.Coefficient;
 
@@ -72,6 +75,11 @@ namespace ScoringSystem.Services
             }
 
             Repository.Close();
+        }
+
+        public bool IsLinkCorrect(string link)
+        {
+            return mammonBankRepository.ClientIdByLink(link) != -1;
         }
 
         private void SaveFormAnswer(FormAnswerModel formAnswer, int formId)

@@ -45,6 +45,11 @@ namespace ScoringSystem.Data
             return entities;
         }
 
+        public T Get<T>(int id) where T : BaseEntity
+        {
+            return Get<T>(Condition.IdentityCondition(id)).Single();
+        }
+
         public T InsertOrUpdate<T>(T entity) where T : BaseEntity
         {
             bool isNew = !Get<T>(Condition.IdentityCondition(entity.Id)).Any();

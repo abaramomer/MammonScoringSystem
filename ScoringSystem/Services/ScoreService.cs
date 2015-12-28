@@ -13,7 +13,7 @@ namespace ScoringSystem.Services
             double sum = 0;
             foreach (var formAnswer in formAnswers)
             {
-                var question = Repository.Get<Question>(Condition.IdentityCondition(formAnswer.QuestionId)).Single();
+                var question = Repository.Get<Question>(formAnswer.QuestionId);
 
                 if(question.QuestionType == QuestionType.Bool)
                 {
@@ -22,12 +22,12 @@ namespace ScoringSystem.Services
                 }
                 else
                 {
-                    var answer = Repository.Get<Answer>(Condition.IdentityCondition(formAnswer.Answer)).Single();
+                    var answer = Repository.Get<Answer>(formAnswer.Answer);
                     sum += answer.Coefficient;
                 }
             }
 
-            return sum;
+            return sum > 0 ? sum : 0;
         }
 
         public double GetActualClientScores(int clientId)
@@ -45,7 +45,7 @@ namespace ScoringSystem.Services
 
             foreach (var formAnswer in answers)
             {
-                var question = Repository.Get<Question>(Condition.IdentityCondition(formAnswer.QuestionId)).Single();
+                var question = Repository.Get<Question>(formAnswer.QuestionId);
                 
                 var clientAnswer = new ClientAnswerModel()
                 {
@@ -58,7 +58,7 @@ namespace ScoringSystem.Services
                 }
                 else
                 {
-                    var answer = Repository.Get<Answer>(Condition.IdentityCondition(formAnswer.Answer)).Single();
+                    var answer = Repository.Get<Answer>(formAnswer.Answer);
 
                     clientAnswer.QuestionAnswer = answer.Text;
                 }
@@ -77,7 +77,14 @@ namespace ScoringSystem.Services
 
             Repository.Close();
 
-            return clientForms.OrderByDescending(f => f.FinishDate).FirstOrDefault();
+            var form = clientForms.OrderByDescending(f => f.FinishDate).FirstOrDefault();
+
+            if(form == null)
+            {
+                throw new ScoringSystemException("client does not exist or does not have any forms");
+            }
+
+            return form;
         }
     }
 }

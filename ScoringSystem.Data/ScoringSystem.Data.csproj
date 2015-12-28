@@ -30,8 +30,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Insight.Database, Version=5.2.7.0, Culture=neutral, PublicKeyToken=f35c6ef87e515afc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Insight.Database.Core.5.2.7\lib\NET45\Insight.Database.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Insight.Database.Providers.PostgreSQL, Version=5.2.7.0, Culture=neutral, PublicKeyToken=f35c6ef87e515afc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Insight.Database.Providers.PostgreSQL.5.2.7\lib\NET45\Insight.Database.Providers.PostgreSQL.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="MySql.Data, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.6.9.8\lib\net45\MySql.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Npgsql, Version=3.0.4.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Npgsql.3.0.4\lib\net45\Npgsql.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -58,6 +70,7 @@
     <Compile Include="EntityProviders\IEntityProvider.cs" />
     <Compile Include="EntityProviders\QuestionProvider.cs" />
     <Compile Include="Extensions\MySqlDataReaderExtensions.cs" />
+    <Compile Include="ExternalData\MammonBankRepository.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="Entities\Question.cs" />
     <Compile Include="MySqlProvider.cs" />

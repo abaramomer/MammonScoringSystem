@@ -1,24 +1,32 @@
 ﻿@using ScoringSystem.Models
-@model List<ScoringSystem.Models.QuestionModel>
-<div id="question-section">
-    @foreach (var question in Model)
-    {
-        <label>@question.Text</label>
-        if (question is BoolQuestionModel)
+@model List<QuestionModel>
+<div id="question-section" class="well bs-component center-block">
+    <h2>Анкета</h2>
+    <hr/>
+    <fieldset>
+        @foreach (var question in Model)
         {
-            @Html.Partial("BoolQuestion", question);
+            <label class="h4">@question.Text</label>
+            if (question is BoolQuestionModel)
+            {
+                @Html.Partial("BoolQuestion", question);
+            }
+
+            if (question is VariableQuestionModel)
+            {
+                @Html.Partial("VariableQuestion", question);
+            }
+
+            <br />
+
         }
+    </fieldset>
 
-        if (question is VariableQuestionModel)
-        {
-            @Html.Partial("VariableQuestion", question);
-        }
-
-        <br />
-
-    }
+    <button id="ok-button" class="btn btn-primary">Готово</button>
 </div>
-<button id="ok-button">OK</button>
+<div class="loader">
+    <img class="loading-image" src="/Images/wheel.gif" alt="loading..">
+</div>
 
 @section Scripts
 {
@@ -26,14 +34,17 @@
 
     <script>
         $(document).ready(function() {
+            var clientLink = '@ViewData["ClientLink"]';
+
             $("#ok-button").click(function() {
+                $("#ok-button").attr("disabled", true);
+                $(".loader").show();
                 var answers = getAnswers($("#question-section"));
 
-                $.getJSON("/Form/SaveForm/", { answers: JSON.stringify(answers) }, {
-                    success: function(scores) {
-                        console.log(scores);
-                    }
-                });
+                $.getJSON("/Form/SaveForm?clientLink=" + clientLink, { answers: JSON.stringify(answers) },
+                    function(redirectUrl) {
+                        window.location.href = redirectUrl;
+                    });
             });
         });
     </script>

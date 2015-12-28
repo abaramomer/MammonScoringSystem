@@ -31,8 +31,7 @@ namespace ScoringSystem.Data.EntityProviders
         {
             return new Dictionary<string, object>()
             {
-                {"coefficient", entity.Coefficient},
-                {"text", "'" + entity.Text + "'"},
+                {"coefficient", entity.Coefficient}
             };
         }
 

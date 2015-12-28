@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace ScoringSystem.Models
+﻿namespace ScoringSystem.Models
 {
     public class FormAnswerModel
     {
