@@ -6,6 +6,6 @@ namespace ScoringSystem.Models
     {
         public string Text { get; set; }
 
-        public Guid Id { get; set; }
+        public int Id { get; set; }
     }
 }

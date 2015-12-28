@@ -2,13 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>TT</title>
+    <title>Form</title>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    @Styles.Render("~/Content/bootstrap.css")
+    @Styles.Render("~/Content/styles.css")
     <meta name="viewport" content="width=device-width" />
 </head>
-<body style="padding-bottom:0px;">
+<body style="padding-bottom:20px;">
     <div>
-        <div id="body" style="min-height: 570px;">
+        <div id="body">
+            <div class="header"><a href="https://mammonbank.tk/" class="link"><div class="header_logo">Mammonbank</div></a></div>
             @RenderBody()
         </div>
     </div>

@@ -2,6 +2,6 @@
 {
     public class BoolQuestionModel : QuestionModel
     {
-        public BoolAnswer Answer { get; set; }
+        public double Coefficient { get; set; }
     }
 }

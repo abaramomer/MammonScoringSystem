@@ -1,0 +1,42 @@
+﻿@model List<QuestionModel>
+           
+@using ScoringSystem.Models
+<div id="question-section">
+    @foreach (var question in Model)
+    {
+        <label class="h4">@question.Text</label>
+        if (question is BoolQuestionModel)
+        {
+            @Html.Partial("BoolQuestionInput", question)
+        }
+
+        if (question is VariableQuestionModel)
+        {
+            @Html.Partial("VariableQuestionInput", question);
+        }
+
+        <br />
+
+    }
+
+    <button id="save-button">Save</button>
+</div>
+
+@section Scripts
+{
+    <script src="/Scripts/calibrateform.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $("#save-button").click(function () {
+                var coefficients = getCoefficients($("#question-section"));
+
+                $.getJSON("/Form/SaveCoefficients/", { coefficients: JSON.stringify(coefficients) }, {
+                    success: function(scores) {
+                        console.log(scores);
+                    }
+                });
+            });
+        });
+    </script>
+}

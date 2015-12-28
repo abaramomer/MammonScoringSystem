@@ -1,7 +1,7 @@
-﻿@model ScoringSystem.Data.VariableQuestion
+﻿@model ScoringSystem.Models.VariableQuestionModel
 
 <div class="variable-question" id="@Model.Id">
-    <select>
+    <select class="form-control" style="width: 400px;">
         @foreach (var answer in Model.Answers)
         {
             <option value="@answer.Id">@answer.Text</option>

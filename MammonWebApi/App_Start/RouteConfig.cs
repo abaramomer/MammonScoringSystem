@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Web.Http;
+using System.Web.Mvc;
 using System.Web.Routing;
 
 namespace MammonWebApi
@@ -13,6 +14,11 @@ namespace MammonWebApi
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Form", action = "Index", id = UrlParameter.Optional }
+            );
+            routes.MapRoute(
+                name: "Scoring",
+                url: "ScoringSystem/{action}/{clientId}",
+                defaults: new { controller = "ScoringSystem", action = "GetScores",  clientId = RouteParameter.Optional }
             );
         }
     }
