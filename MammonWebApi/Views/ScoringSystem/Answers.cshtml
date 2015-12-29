@@ -1,0 +1,16 @@
+﻿@model List<ScoringSystem.Models.ClientAnswerModel>
+
+<div id="question-section" class="well bs-component center-block">
+    <h2>Ответы</h2>
+    <hr />
+    @foreach (var answer in Model)
+    {
+        <div>
+            <b>@answer.QuestionText</b>
+        </div>
+        <label class="h6">@answer.QuestionAnswer</label>
+        
+        <br/>
+        <br />
+    }
+</div>

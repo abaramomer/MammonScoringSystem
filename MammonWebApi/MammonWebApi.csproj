@@ -173,8 +173,10 @@
     <Content Include="Views\Form\CalibrateCoefficients.cshtml" />
     <Content Include="Views\Shared\BoolQuestionInput.cshtml" />
     <Content Include="Views\Shared\VariableQuestionInput.cshtml" />
-    <Content Include="Views\Form\Success.cshtml" />
+    <Content Include="Views\ScoringSystem\Info.cshtml" />
     <Content Include="Views\Form\IncorrectLink.cshtml" />
+    <Content Include="Views\ScoringSystem\Answers.cshtml" />
+    <Content Include="Views\Form\Info.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

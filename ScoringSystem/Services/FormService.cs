@@ -41,11 +41,15 @@ namespace ScoringSystem.Services
             };
 
             form = Repository.InsertOrUpdate(form);
-            
+
+            var answers = new List<FormAnswer>();
+
             foreach (var formAnswer in formAnswers)
             {
-                SaveFormAnswer(formAnswer, form.Id);
+                answers.Add(GetFormAnswer(formAnswer, form.Id));
             }
+
+            Repository.InsertMultiple(answers);
 
             Repository.Close();
 
@@ -84,14 +88,14 @@ namespace ScoringSystem.Services
             return Int32.TryParse(link, out a); //mammonBankRepository.ClientIdByLink(link) != -1;
         }
 
-        private void SaveFormAnswer(FormAnswerModel formAnswer, int formId)
+        private FormAnswer GetFormAnswer(FormAnswerModel formAnswer, int formId)
         {
-            Repository.InsertOrUpdate(new FormAnswer
+            return new FormAnswer
             {
                 QuestionId = formAnswer.QuestionId,
                 Answer = formAnswer.Answer,
                 FormId = formId
-            });
+            };
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Linq;
+using System.Text;
 using ScoringSystem.Data.Entities;
 using ScoringSystem.Data.EntityProviders;
 
@@ -80,6 +81,20 @@ namespace ScoringSystem.Data
             Update(provider, entity.Id, provider.MapToColumnValues(entity));
 
             return entity;
+        }
+
+        public void InsertMultiple<T>(List<T> entities) where T: BaseEntity
+        {
+            var provider = GetProvider(typeof(T));
+
+            var query = new StringBuilder();
+
+            foreach (var entity in entities)
+            {
+                query.AppendLine(queryBuilder.InsertQuery(provider, provider.MapToColumnValues(entity)) + ";");
+            }
+
+            mySqlProvider.ExecuteNonQuery(query.ToString());
         }
 
         public void Close()

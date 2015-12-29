@@ -11,6 +11,8 @@ namespace ScoringSystem.Data
 
         T InsertOrUpdate<T>(T entity) where T : BaseEntity;
 
+        void InsertMultiple<T>(List<T> entities) where T : BaseEntity;
+
         void Close();
     }
 }

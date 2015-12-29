@@ -1,7 +1,4 @@
-﻿using System;
-using System.Web.Helpers;
-using System.Web.Http;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using ScoringSystem;
 using ScoringSystem.Services;
 
@@ -33,21 +30,25 @@ namespace MammonWebApi.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetAnswers(int clientId)
+        public ActionResult Answers(int clientId)
         {
-            dynamic result;
             try
             {
-                result = scoreService.GetClientAnswers(clientId);
+                var result = scoreService.GetClientAnswers(clientId);
+
+                return View(result);
             }
 
             catch (ScoringSystemException e)
             {
-                result = e.Message;
+                return RedirectToAction("Info", "ScoringSystem");
             }
+        }
 
-
-            return Json(result, JsonRequestBehavior.AllowGet);
+        public ActionResult Info()
+        {
+            ViewData["Message"] = "Клиент еще не проходил анкетирование либо его не существует";
+            return View();
         }
     }
 }

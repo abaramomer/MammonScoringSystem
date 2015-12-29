@@ -46,10 +46,10 @@ namespace MammonWebApi.Controllers
 
             formService.SaveForm(int.Parse(clientLink), userAnswers);
 
-            return Json("/Form/Success", JsonRequestBehavior.AllowGet);
+            return Json("/Form/Info", JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult Success()
+        public ActionResult Info()
         {
             ViewData["Message"] = "Ваши ответы учтены. Спасибо за прохождение анкеты";
 
