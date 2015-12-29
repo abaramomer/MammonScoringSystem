@@ -35,10 +35,10 @@ namespace MammonWebApi.Controllers
 
         public JsonResult GetAnswers(int clientId)
         {
-            string result;
+            dynamic result;
             try
             {
-                result = scoreService.GetClientAnswers(clientId).ToString();
+                result = scoreService.GetClientAnswers(clientId);
             }
 
             catch (ScoringSystemException e)

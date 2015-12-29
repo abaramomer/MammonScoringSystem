@@ -1,5 +1,6 @@
-﻿using System.Configuration;
-
+﻿using System;
+using System.Configuration;
+using System.Data;
 using Npgsql;
 
 namespace ScoringSystem.Data.ExternalData
@@ -18,21 +19,35 @@ namespace ScoringSystem.Data.ExternalData
         public int ClientIdByLink(string link)
         {
             connection.Open();
-            var query = string.Format(SelectClientUniqueLinkQuery, link);
-            var command = new NpgsqlCommand(query, connection);
-
-            var reader = command.ExecuteReader();
-
-            if(reader.HasRows)
+            try
             {
-                reader.Read();
 
-                var id = reader["id"];
+                var query = string.Format(SelectClientUniqueLinkQuery, link);
+                var command = new NpgsqlCommand(query, connection);
 
-                reader.Close();
+                var reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    reader.Read();
+
+                    var id = reader["id"];
+
+                    reader.Close();
+                    connection.Close();
+
+                    return (int) id;
+                }
+
                 connection.Close();
+            }
 
-                return (int)id;
+            finally
+            {
+                if(connection.State != ConnectionState.Closed)
+                {
+                    connection.Close();
+                }
             }
 
             return -1;

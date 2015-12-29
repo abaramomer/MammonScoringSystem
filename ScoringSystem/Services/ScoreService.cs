@@ -35,7 +35,7 @@ namespace ScoringSystem.Services
             return GetActualForm(clientId).Scores;
         }
 
-        public object GetClientAnswers(int clientId)
+        public List<ClientAnswerModel> GetClientAnswers(int clientId)
         {
             var form = GetActualForm(clientId);
 

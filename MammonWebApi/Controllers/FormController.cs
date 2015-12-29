@@ -44,7 +44,7 @@ namespace MammonWebApi.Controllers
             List<FormAnswerModel> userAnswers = (List<FormAnswerModel>)JsonConvert
                 .DeserializeObject(answers, typeof (List<FormAnswerModel>));
 
-            formService.SaveForm(clientLink, userAnswers);
+            formService.SaveForm(int.Parse(clientLink), userAnswers);
 
             return Json("/Form/Success", JsonRequestBehavior.AllowGet);
         }

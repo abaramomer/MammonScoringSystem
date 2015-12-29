@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Linq;
 using ScoringSystem.Data.Entities;
 using ScoringSystem.Data.EntityProviders;
@@ -29,18 +30,29 @@ namespace ScoringSystem.Data
         public IList<T> Get<T>(Condition condition) where T : BaseEntity
         {
             var provider = GetProvider(typeof (T));
+            List<T> entities = new List<T>();
 
             var query = queryBuilder.SelectQuery(provider, condition);
 
-            var reader = mySqlProvider.ExecuteWithReader(query);
-            List<T> entities = new List<T>();
-
-            while (reader.Read())
+            try
             {
-                entities.Add((T) provider.MapFromReader(reader));
+                var reader = mySqlProvider.ExecuteWithReader(query);
+                
+                while (reader.Read())
+                {
+                    entities.Add((T) provider.MapFromReader(reader));
+                }
+
+                reader.Close();
             }
 
-            reader.Close();
+            finally
+            {
+                if (mySqlProvider.Connection.State != ConnectionState.Closed)
+                {
+                    mySqlProvider.Connection.Close();
+                }
+            }
 
             return entities;
         }

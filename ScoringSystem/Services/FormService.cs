@@ -31,11 +31,11 @@ namespace ScoringSystem.Services
             return QuestionModelMapper.MapToQuestionModels(questions, answers);
         }
 
-        public double SaveForm(string clientLink, List<FormAnswerModel> formAnswers)
+        public double SaveForm(int clientId, List<FormAnswerModel> formAnswers)
         {
             Form form = new Form
             {
-                ClientId = mammonBankRepository.ClientIdByLink(clientLink),
+                ClientId = clientId,//mammonBankRepository.ClientIdByLink(clientLink),
                 FinishDate = DateTime.UtcNow,
                 Scores = scoreService.CalculateScores(formAnswers),
             };
@@ -79,7 +79,9 @@ namespace ScoringSystem.Services
 
         public bool IsLinkCorrect(string link)
         {
-            return mammonBankRepository.ClientIdByLink(link) != -1;
+            int a;
+
+            return Int32.TryParse(link, out a); //mammonBankRepository.ClientIdByLink(link) != -1;
         }
 
         private void SaveFormAnswer(FormAnswerModel formAnswer, int formId)
